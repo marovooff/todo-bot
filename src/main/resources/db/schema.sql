@@ -1,0 +1,9 @@
+CREATE TYPE todo_status AS ENUM ('IN_PROGRESS', 'DONE', 'CANCELLED');
+
+CREATE TABLE IF NOT EXISTS todo (
+    id SERIAL PRIMARY KEY,
+    date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    name VARCHAR(255) NOT NULL,
+    tag VARCHAR(50),
+    status todo_status
+);
