@@ -184,7 +184,7 @@ public class BotController extends TelegramLongPollingBot {
      * @param chatId идентификатор чата
      * @param response текст сообщения
      */
-    private void sendResponse (String chatId, String response) {
+    public void sendResponse (String chatId, String response) {
         SendMessage message = new SendMessage();
         message.setChatId(chatId);
         message.setText(response);
