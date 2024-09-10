@@ -23,7 +23,6 @@ jobs:
         run: ls -R
 
       - name: Build the Spring Boot app
-        working-directory: ./todo-bot
         run: mvn clean package
 
       - name: Archive the build artifacts
