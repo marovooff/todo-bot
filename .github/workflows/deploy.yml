@@ -30,19 +30,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Deploy to VPS
-      run: |
-      # Копируем ключ из гитхаба на VPS
-        echo "${{ secrets.SSH_KEY }}" > /tmp/ssh_private_key
-        chmod 600 /tmp/ssh_private_key
-
-      # Копируем jar на VPS
-        scp -i /tmp/ssh_private_key -o StrictHostKeyChecking=no target/*.jar borges@194.67.84.111:/todo-bot/todo-bot.jar
-    
-      # Restart the application on the VPS
-        ssh -i /tmp/ssh_private_key -o StrictHostKeyChecking=no root@194.67.84.111 << 'EOF'
-          pkill -f "todo-bot.jar" || true 
-          nohup java -jar /todo-bot/todo-bot.jar > /dev/null 2>&1 &
-        EOF
-      env:
-        SSH_KEY: ${{ secrets.SSH_KEY }}
+      - name: Deploy to VPS
+        run: |
+          # Копируем ключ из гитхаба на VPS
+          echo "${{ secrets.SSH_KEY }}" > /tmp/ssh_private_key
+          chmod 600 /tmp/ssh_private_key
+          
+          # Копируем jar на VPS
+          scp -i /tmp/ssh_private_key -o StrictHostKeyChecking=no target/*.jar borges@194.67.84.111:/home/borges/todo-bot/todo-bot.jar
+          
+          # Restart the application on the VPS
+          ssh -i /tmp/ssh_private_key -o StrictHostKeyChecking=no borges@194.67.84.111 << 'EOF'
+            pkill -f "todo-bot.jar" || true
+            nohup java -jar /home/borges/todo-bot/todo-bot.jar > /dev/null 2>&1 &
+          EOF
+        env:
+          SSH_KEY: ${{ secrets.SSH_KEY }}
