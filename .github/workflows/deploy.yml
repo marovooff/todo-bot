@@ -17,7 +17,7 @@ jobs:
           java-version: '17'
 
       - name: Build the Spring Boot app
-        run: ./mvnw clean package
+        run: mvn clean package
 
       - name: Archive the build artifacts
         uses: actions/upload-artifact@v2
