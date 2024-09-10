@@ -20,8 +20,6 @@ target/
 *.ipr
 
 .mvn
-mvnw
-mvnw.cmd
 BACKLOG.md
 src/main/resources/application.dev.properties
 
