@@ -40,6 +40,9 @@ jobs:
         scp -i /tmp/ssh_private_key -o StrictHostKeyChecking=no target/*.jar borges@194.67.84.111:/todo-bot/todo-bot.jar
     
       # Restart the application on the VPS
-        ssh -i /tmp/ssh_private_key -o StrictHostKeyChecking=no root@194.67.84.111 'pkill -f "todo-bot.jar" || true && nohup java -jar /todo-bot/todo-bot.jar > /dev/null 2>&1 &'
+        ssh -i /tmp/ssh_private_key -o StrictHostKeyChecking=no root@194.67.84.111 << 'EOF'
+          pkill -f "todo-bot.jar" || true 
+          nohup java -jar /todo-bot/todo-bot.jar > /dev/null 2>&1 &
+        EOF
       env:
         SSH_KEY: ${{ secrets.SSH_KEY }}
