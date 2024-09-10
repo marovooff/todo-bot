@@ -16,6 +16,9 @@ jobs:
         with:
           java-version: '17'
 
+      - name: List files
+        run: ls -R
+
       - name: Build the Spring Boot app
         run: mvn clean package
 
