@@ -23,7 +23,7 @@ target/
 mvnw
 mvnw.cmd
 BACKLOG.md
-src/main/resources/application.properties
+src/main/resources/application.dev.properties
 
 ### NetBeans ###
 /nbproject/private/
